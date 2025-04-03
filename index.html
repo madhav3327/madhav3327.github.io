@@ -9,9 +9,10 @@
     /* Base Styles */
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f4f4f4;
+      background: white;
       margin: 0;
       padding: 0;
+      color: #333;
     }
     .container {
       max-width: 1000px;
@@ -20,17 +21,18 @@
     }
     h1, h2 {
       text-align: center;
-      color: #333;
       margin-bottom: 20px;
     }
-    /* Profile Card */
+    /* Profile Card with Glass Effect */
     .profile-card {
-      background: #fff;
+      background: rgba(255, 255, 255, 0.4);
       padding: 20px;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
       text-align: center;
       margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -81,13 +83,15 @@
     .btn-secondary:hover {
       background: #0069d9;
     }
-    /* Card Styles */
+    /* Glass Effect Card Styles */
     .card {
-      background-color: #fff;
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 10px;
       box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
       padding: 20px;
       margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -99,12 +103,36 @@
     .card h3 {
       margin: 0 0 10px 0;
       font-size: 22px;
-      color: #333;
     }
     .card p {
       font-size: 16px;
       line-height: 1.6;
-      color: #666;
+    }
+    /* Row Layout for Experience, Projects, Education */
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+    }
+    /* Two columns for experience and education cards */
+    .row.two-columns .card {
+      flex: 1 1 calc(50% - 20px);
+    }
+    /* Four columns for projects */
+    .row.four-columns .card {
+      flex: 1 1 calc(25% - 20px);
+    }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .row.two-columns .card,
+      .row.four-columns .card {
+        flex: 1 1 100%;
+      }
+      .buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
     /* Footer */
     footer {
@@ -114,13 +142,6 @@
       color: #fff;
       margin-top: 40px;
     }
-    /* Responsive */
-    @media (max-width: 768px) {
-      .buttons {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -129,7 +150,7 @@
     <div class="profile-card">
       <img src="./myprofile.jpeg" alt="Your Photo">
       <h2>Rayabandi Sai Madhav</h2>
-      <p>Software Developer | 5+ Years Experience | React | Java | Django | Spring Boot</p>
+      <p>Software Developer | 5+ Years Experience | LLMs, AI, Full-Stack, Cloud</p>
       <div class="buttons">
         <a href="https://github.com/madhav3327" target="_blank">
           <button class="btn btn-primary">GitHub</button>
@@ -144,71 +165,83 @@
     <h2>Professional Summary</h2>
     <div class="card">
       <p>
-        Full-stack developer with 5+ years of experience in building scalable web applications. Proficient in Java, Python, and .NET Core with expertise in developing dynamic frontends using React and Angular and robust backends with Spring Boot and Django. Experienced in cloud deployments, containerization, and AI integration, including LLMs and RAG pipelines.
+        I am a full-stack developer with over 5 years of experience designing, developing, and deploying scalable web applications. Currently, I focus on advanced projects integrating Large Language Models (LLMs) and AI, such as building intelligent chatbots, Retrieval-Augmented Generation (RAG) pipelines using LangChain and Ollama, and developing Java-based ML tools for code automation. My expertise spans backend development with Spring Boot and Django, dynamic frontend development with React and Angular, and cloud deployments on AWS and Azure.
       </p>
     </div>
 
     <!-- Experience Section -->
     <h2>Experience</h2>
-    <div class="card">
-      <h3>Research Assistant</h3>
-      <p>University of Nebraska at Omaha – May 2024 to Present</p>
-      <p>
-        Collaborated on mHealth website enhancements including chatbot integration, web scraping, and system updates to improve healthcare service delivery.
-      </p>
+    <div class="row two-columns">
+      <div class="card">
+        <h3>Software Developer / Research Assistant</h3>
+        <p>University of Nebraska at Omaha – January 2023 to Present</p>
+        <p>
+          Leading development on healthcare applications with integrated AI capabilities. I build Django-based systems with LLM-powered chatbots and RAG pipelines, containerize applications using Docker, and implement CI/CD pipelines on AWS. Additionally, I spearheaded a Java-based ML project for source code automation, processing large-scale data to enhance model performance.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Software Developer</h3>
+        <p>Infosys, Hyderabad – May 2020 to December 2022</p>
+        <p>
+          Developed enterprise web applications using Java Spring Boot and React. Enhanced e-commerce platforms by optimizing UI layouts, integrating RESTful APIs, and managing end-to-end deployments. Collaborated in a dynamic team to deliver scalable, high-performance solutions.
+        </p>
+      </div>
     </div>
-    <div class="card">
-      <h3>Graduate Assistant</h3>
-      <p>University of Nebraska at Omaha – August 2023 to May 2024</p>
-      <p>
-        Analyzed large-scale Stack Overflow data using data mining and machine learning techniques to extract actionable insights.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Systems Engineer</h3>
-      <p>Infosys, Hyderabad – January 2021 to June 2022</p>
-      <p>
-        Developed interactive web applications using Java, React.js, and Spring Boot. Contributed to the "Wanderlust" travel app by optimizing UI, backend services, and deployment workflows.
-      </p>
+
+    <!-- Projects Section -->
+    <h2>Projects</h2>
+    <div class="row four-columns">
+      <div class="card">
+        <h3>LLM Chatbot & RAG System</h3>
+        <p>
+          Developed an intelligent chatbot integrated with a Retrieval-Augmented Generation pipeline using AWS Bedrock, SageMaker, LangChain, and Ollama. This system powers dynamic Q&A functionality for the mHealth platform.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Budget Tracker App with AI Insights</h3>
+        <p>
+          Created a Django-based application to manage shared expenses. The app auto-generates monthly CSV summaries and leverages LLMs to analyze spending patterns, offering actionable financial insights.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Weather Forecasting System</h3>
+        <p>
+          Built a Spring Boot application that uses historical weather data and linear regression to predict temperature, humidity, and rainfall. REST APIs deliver forecasts to a dynamic, responsive frontend.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Kinematics Q&A Generator</h3>
+        <p>
+          Developed a Django NLP application that extracts key variables from physics questions, maps them to relevant formulas, and generates step-by-step solutions. The interface is styled with Bootstrap for an intuitive user experience.
+        </p>
+      </div>
     </div>
 
     <!-- Skills Section -->
     <h2>Skills</h2>
     <div class="card">
       <h3>Technical Skills</h3>
-      <p><strong>Programming Languages:</strong> Java, Python, C#, JavaScript, TypeScript</p>
+      <p><strong>Languages:</strong> Java, Python, C#, JavaScript, TypeScript</p>
       <p><strong>Web Development:</strong> React, Angular, Bootstrap, Tailwind, HTML, CSS</p>
       <p><strong>Back End Frameworks:</strong> Spring Boot, Django</p>
-      <p><strong>Database:</strong> SQL Server, MySQL, MongoDB</p>
-      <p><strong>Cloud:</strong> AWS (EC2, S3, CodePipeline, SageMaker, Bedrock), Azure</p>
+      <p><strong>Database:</strong> SQL Server, MySQL, MongoDB, PostgreSQL</p>
+      <p><strong>Cloud & DevOps:</strong> AWS (EC2, S3, CodePipeline, SageMaker, Bedrock), Azure, Docker, Kubernetes, CI/CD</p>
+      <p><strong>AI & ML:</strong> LLMs, LangChain, Ollama, RAG, Machine Learning</p>
     </div>
 
     <!-- Education Section -->
     <h2>Education</h2>
-    <div class="card">
-      <h3>University of Nebraska, Masters in Computer Science</h3>
-      <p>January 2023 - December 2024, Nebraska</p>
-      <p>CGPA: 3.8/4.0</p>
-    </div>
-    <div class="card">
-      <h3>Jawaharlal Nehru Technological University, Bachelors in Computer Science</h3>
-      <p>August 2016 - September 2020, Hyderabad</p>
-      <p>CGPA: 7.8/10</p>
-    </div>
-
-    <!-- Projects Section -->
-    <h2>Projects</h2>
-    <div class="card">
-      <h3>Question Understanding Web App</h3>
-      <p>
-        Django-based application that leverages NLP to parse and understand physics questions, mapping them to relevant formulas and explanations.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Weather Forecasting</h3>
-      <p>
-        Spring Boot project that uses historical weather data and linear regression to predict temperature, humidity, and rainfall.
-      </p>
+    <div class="row two-columns">
+      <div class="card">
+        <h3>University of Nebraska, Masters in Computer Science</h3>
+        <p>January 2023 - December 2024, Nebraska</p>
+        <p>CGPA: 3.8/4.0</p>
+      </div>
+      <div class="card">
+        <h3>Jawaharlal Nehru Technological University, Bachelors in Computer Science</h3>
+        <p>August 2016 - September 2020, Hyderabad</p>
+        <p>CGPA: 7.8/10</p>
+      </div>
     </div>
   </div>
 
@@ -219,9 +252,7 @@
   <!-- JavaScript for Animation -->
   <script>
     // Intersection Observer to add fade-in effect on scroll
-    const observerOptions = {
-      threshold: 0.1
-    };
+    const observerOptions = { threshold: 0.1 };
     const observerCallback = (entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
